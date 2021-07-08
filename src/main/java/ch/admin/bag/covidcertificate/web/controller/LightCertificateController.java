@@ -6,6 +6,9 @@ import ch.admin.bag.covidcertificate.service.KpiLoggerService;
 import ch.admin.bag.covidcertificate.service.LightCertificateGenerationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +29,11 @@ public class LightCertificateController {
     private final KpiLoggerService kpiLoggerService;
 
     @PostMapping("/generate")
-    public LightCertificateResponseDto generate(@Valid @RequestBody LightCertificateCreateDto lightCertificateCreateDto) {
+    @PreAuthorize("hasRole('bag-cc-certificatecreator')")
+    public ResponseEntity<LightCertificateResponseDto> generate(@Valid @RequestBody LightCertificateCreateDto lightCertificateCreateDto) {
         kpiLoggerService.logKpi(KPI_TYPE_LIGHT_CERTIFICATE, KPI_GENERATION_STATUS_REQUESTED);
         var lightCertificate = generationService.createLightCertificate(lightCertificateCreateDto);
         kpiLoggerService.logKpi(KPI_TYPE_LIGHT_CERTIFICATE, KPI_GENERATION_STATUS_SUCCESSFUL);
-        return lightCertificate;
+        return new ResponseEntity<>(lightCertificate, HttpStatus.CREATED);
     }
 }
