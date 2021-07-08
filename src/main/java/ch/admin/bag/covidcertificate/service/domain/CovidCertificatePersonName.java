@@ -7,6 +7,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@EqualsAndHashCode
 public class CovidCertificatePersonName {
     @JsonProperty("fn")
     private String familyName;

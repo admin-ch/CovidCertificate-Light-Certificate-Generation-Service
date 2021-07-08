@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@EqualsAndHashCode
 public class CovidCertificatePersonNameDto {
     @JsonProperty("fn")
     @NotEmpty
