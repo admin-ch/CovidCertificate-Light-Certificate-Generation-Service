@@ -1,0 +1,30 @@
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        authorization-server:
+          issuer: "https://identity-a.bit.admin.ch/realms/BAG-CovidCertificate"
+
+cc-signing-service:
+  url: "https://covidcertificate-signing-a.bag.admin.ch/bag-vaccinecer-webapp/sign-light"
+
+light-certificate-generation-service:
+  cose:
+    key-identifier: "032D3B9A6ED0694A"
+  monitor:
+    prometheus:
+      user: "prometheus"
+      password: ${vcap.services.cc_prometheus.credentials.password}
+  allowed-origin: "https://www.covidcertificate-a.admin.ch"
+
+
+## Mutual-SSL configuration
+app:
+  conn:
+    cc-signing-service:
+      key-store: ${vcap.services.cc_light_to_signing_service_keystore.credentials.keystore}
+      key-store-password: ${vcap.services.cc_light_to_signing_service_keystore.credentials.keystorePassword}
+      key-alias: cc-light-certificate-service
+      key-password: ${vcap.services.cc_light_to_signing_service_keystore.credentials.keyPassword}
+      trust-store: ${vcap.services.cc_light_to_signing_service_keystore.credentials.keystore}
+      trust-store-password: ${vcap.services.cc_light_to_signing_service_keystore.credentials.keystorePassword}
