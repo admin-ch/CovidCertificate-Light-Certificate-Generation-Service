@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Valid
+@EqualsAndHashCode
 public class LightCertificateCreateDto {
     @JsonProperty("nam")
     @NotNull

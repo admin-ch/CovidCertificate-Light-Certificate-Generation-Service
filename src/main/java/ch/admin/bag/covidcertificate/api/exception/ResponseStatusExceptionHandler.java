@@ -39,10 +39,4 @@ public class ResponseStatusExceptionHandler {
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(value = {Exception.class})
-    protected ResponseEntity<Object> handleException(Exception e) {
-        log.error("Exception", e);
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
 }

@@ -10,6 +10,7 @@ import java.time.Instant;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@EqualsAndHashCode
 public class LightCertificate {
     @JsonProperty("ver")
     private String version;
