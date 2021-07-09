@@ -29,7 +29,8 @@ public class LightCertificateGenerationService {
             Barcode code = barcodeService.createBarcode(contents, lightCertificate.getExpirationInstant());
             return new LightCertificateResponseDto(code.getPayload(), code.getImage());
         } catch (JsonProcessingException exception) {
-            throw new CreateCertificateException(MAPPING_ERROR);
+            log.error("Failed to serialize certificate light to json.");
+            throw new CreateCertificateException(MAPPING_ERROR, exception);
         }
     }
 

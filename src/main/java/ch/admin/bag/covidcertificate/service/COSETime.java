@@ -18,10 +18,6 @@ public class COSETime {
         return getInstant(LocalDateTime.now(clock));
     }
 
-    public Instant getExpiration() {
-        return getInstant(LocalDateTime.now(clock).plusMonths(EXPIRATION_PERIOD));
-    }
-
     private Instant getInstant(LocalDateTime localDateTime) {
         return localDateTime.toInstant(clock.getZone().getRules().getOffset(localDateTime));
     }

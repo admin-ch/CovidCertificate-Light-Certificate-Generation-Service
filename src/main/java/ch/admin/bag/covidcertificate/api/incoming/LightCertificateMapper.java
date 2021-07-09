@@ -1,6 +1,6 @@
 package ch.admin.bag.covidcertificate.api.incoming;
 
-import ch.admin.bag.covidcertificate.service.domain.CovidCertificatePersonName;
+import ch.admin.bag.covidcertificate.service.domain.LightCertificatePersonName;
 import ch.admin.bag.covidcertificate.service.domain.LightCertificate;
 import com.google.common.collect.Comparators;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 import static ch.admin.bag.covidcertificate.api.Constants.CERTIFICATE_VERSION;
+import static ch.admin.bag.covidcertificate.api.incoming.LightCertificatePersonNameMapper.toLightCertificatePersonName;
 
 @Component
 public class LightCertificateMapper {
@@ -23,18 +24,9 @@ public class LightCertificateMapper {
     ) {
         return new LightCertificate(
                 CERTIFICATE_VERSION,
-                toCovidCertificatePersonName(lightCertificateCreateDto.getName()),
+                toLightCertificatePersonName(lightCertificateCreateDto.getName()),
                 lightCertificateCreateDto.getDateOfBirth(),
                 computeValidity(lightCertificateCreateDto)
-        );
-    }
-
-    private CovidCertificatePersonName toCovidCertificatePersonName(CovidCertificatePersonNameDto covidCertificatePersonNameDto){
-        return new CovidCertificatePersonName(
-                covidCertificatePersonNameDto.getFamilyName(),
-                covidCertificatePersonNameDto.getFamilyNameStandardised(),
-                covidCertificatePersonNameDto.getGivenName(),
-                covidCertificatePersonNameDto.getGivenNameStandardised()
         );
     }
 

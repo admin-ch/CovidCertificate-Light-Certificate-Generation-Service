@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class LightCertificateCreateDto {
     @JsonProperty("nam")
     @NotNull
-    private @Valid CovidCertificatePersonNameDto name;
+    private @Valid LightCertificatePersonNameDto name;
     @JsonProperty("dob")
     private String dateOfBirth;
     @JsonProperty("exp")
