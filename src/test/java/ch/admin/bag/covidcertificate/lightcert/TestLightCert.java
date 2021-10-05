@@ -1,0 +1,23 @@
+package ch.admin.bag.covidcertificate.lightcert;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import ch.admin.bag.covidcertificate.service.encoder.LightCertificateBarcodeCreator;
+import se.digg.dgc.encoding.BarcodeException;
+
+@Disabled("creates local file with barcode")
+public class TestLightCert {
+    @Test
+    public void makeQrCode() throws BarcodeException, IOException {
+        var barcode = new LightCertificateBarcodeCreator().create(
+                "HC1:NCFM60BG0/3WUWGSLKH47GO0SY8T$TF:GUD39CK/500XK0JCV497F3YM2:FV3F38DA5HVY50.FK6ZK7:EDOLOPCO8F6%E3.DA%EOPC1G72A6YM8KG7DB8ES8457SM8GS8BA6DB80G6D46$96RW6SG6UPC0JCZ69FVCPD0LVC6JD846Y96F465W5307+EDG8F3I80/D6$CBECSUER:C2$NS346$C2%E9VC- CSUE145GB8JA5B$D% D3IA4W5646846C46IA7.JCN9E.G8YB956ASN8KKE3KC.SC4KCD3DX47B46IL6646H*6Z/ER2DD46JH8946JPCT3E6JD846Y96F463W5407..DX%DZJC7/DUOA5$C6LEA/D33D.A6I3DYUC6$C5WEW.CDWE/NAGY8HIAL+9B09/A6I3D6WEITA2OA$PC5$CUZC$$5Y$5FBB%10GVN +DCUL *VD4Q43P3DF3.GQ-0T7F7DKYHCECHP 5KUDRVMFIJQBTH*C$XNQWIIJ2M*6  HGPP3OQQ/40%P4*T7.2PVPTAW:V7N52$D0/EG9 MJB80R1U282GRIQL%9UR3TX-1UHPZUQ2NS4SAY D88SML7MUKI 28L7:SOKLE.XT4.0BX2JUPM:6:2T/696GQ2R9R:POTB%MA7TLCCM8-F3*AT$GO$E6622EN/KHJF4IX8%5PP07/B4H2WRNE+QBDB483G P56I7R73VS8SI9XFT01DLBESSFDBM3RE67Q+31.QN. N%6H0$GWIF2KU3THJI30SV2EOB3I0V80-23ID92I.PC7R5Y1WN7N-DCA8HT6RTQODE61V1BV827BH9K24");
+
+        FileOutputStream outputStream = new FileOutputStream("code.png");
+        outputStream.write(barcode.getImage());
+        outputStream.close();
+    }
+}

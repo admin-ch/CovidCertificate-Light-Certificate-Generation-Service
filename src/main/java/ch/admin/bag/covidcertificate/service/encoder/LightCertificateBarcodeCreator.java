@@ -9,8 +9,6 @@ package ch.admin.bag.covidcertificate.service.encoder;
 import com.google.common.base.Charsets;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.ByteMatrix;
 import com.google.zxing.qrcode.encoder.Encoder;
@@ -58,7 +56,7 @@ public class LightCertificateBarcodeCreator implements BarcodeCreator {
         final Map<EncodeHintType, Object> encodingHints = new HashMap<>();
         encodingHints.put(EncodeHintType.CHARACTER_SET, characterSet);
         try {
-            QRCode code = Encoder.encode(contents, ErrorCorrectionLevel.Q, encodingHints);
+            QRCode code = Encoder.encode(contents, ErrorCorrectionLevel.M, encodingHints);
             BufferedImage image = renderQRImage(code, DEFAULT_WIDTH_AND_HEIGHT, DEFAULT_WIDTH_AND_HEIGHT, 4);
 
             byte[] bytes = bufferedImageToBytes(image);
@@ -120,8 +118,6 @@ public class LightCertificateBarcodeCreator implements BarcodeCreator {
         int leftPadding = (outputWidth - (inputWidth * multiple)) / 2;
         int topPadding = (outputHeight - (inputHeight * multiple)) / 2;
         final int FINDER_PATTERN_SIZE = 7;
-        final float CIRCLE_SCALE_DOWN_FACTOR = 28f / 30f;
-        int circleSize = (int) (multiple * CIRCLE_SCALE_DOWN_FACTOR);
 
         for (int inputY = 0, outputY = topPadding; inputY < inputHeight; inputY++, outputY += multiple) {
             for (int inputX = 0, outputX = leftPadding; inputX < inputWidth; inputX++, outputX += multiple) {
@@ -129,37 +125,38 @@ public class LightCertificateBarcodeCreator implements BarcodeCreator {
                     if (!(inputX <= FINDER_PATTERN_SIZE && inputY <= FINDER_PATTERN_SIZE
                             || inputX >= inputWidth - FINDER_PATTERN_SIZE && inputY <= FINDER_PATTERN_SIZE
                             || inputX <= FINDER_PATTERN_SIZE && inputY >= inputHeight - FINDER_PATTERN_SIZE)) {
-                        // graphics.fillRoundRect(outputX, outputY, circleSize, circleSize, (int)(round*circleSize), (int)(round*3));
-                        graphics.fillOval(outputX, outputY, circleSize, circleSize);
+                        graphics.fillRect(outputX, outputY, multiple, multiple);
                     }
                 }
             }
         }
 
-        int circleDiameter = multiple * FINDER_PATTERN_SIZE;
-        drawFinderPatternCircleStyle(graphics, leftPadding, topPadding, circleDiameter);
-        drawFinderPatternCircleStyle(graphics, leftPadding + (inputWidth - FINDER_PATTERN_SIZE) * multiple, topPadding,
-                circleDiameter);
-        drawFinderPatternCircleStyle(graphics, leftPadding, topPadding + (inputHeight - FINDER_PATTERN_SIZE) * multiple,
-                circleDiameter);
+        int finderSideLength = multiple * FINDER_PATTERN_SIZE;
+
+        drawFinderPatternRectangleStyle(graphics, leftPadding, topPadding,
+        finderSideLength);
+        drawFinderPatternRectangleStyle(graphics, leftPadding + (inputWidth -
+        FINDER_PATTERN_SIZE) * multiple, topPadding,
+        finderSideLength);
+        drawFinderPatternRectangleStyle(graphics, leftPadding, topPadding + (inputHeight
+        - FINDER_PATTERN_SIZE) * multiple,
+        finderSideLength);
 
         return image;
     }
 
-    static final float round = 0.6f;
-
-    private static void drawFinderPatternCircleStyle(Graphics2D graphics, int x, int y, int circleDiameter) {
-        final int WHITE_CIRCLE_DIAMETER = circleDiameter * 5 / 7;
-        final int WHITE_CIRCLE_OFFSET = circleDiameter / 7;
-        final int MIDDLE_DOT_DIAMETER = circleDiameter * 3 / 7;
-        final int MIDDLE_DOT_OFFSET = circleDiameter * 2 / 7;
+    private static void drawFinderPatternRectangleStyle(Graphics2D graphics, int x, int y, int sideLength) {
+        final int OUTER_FINDER_SIDE_LENGTH = sideLength * 5 / 7;
+        final int OUTER_FINDER_OFFSET = sideLength / 7;
+        final int INNTER_FINDER_SIDE_LENGTH = sideLength * 3 / 7;
+        final int INNER_FINDER_OFFSET = sideLength * 2 / 7;
 
         graphics.setColor(lightBlue);
-        graphics.fillOval(x, y, circleDiameter, circleDiameter);
+        graphics.fillRect(x, y, sideLength, sideLength);
         graphics.setColor(Color.white);
-        graphics.fillOval(x + WHITE_CIRCLE_OFFSET, y + WHITE_CIRCLE_OFFSET, WHITE_CIRCLE_DIAMETER,
-                WHITE_CIRCLE_DIAMETER);
+        graphics.fillRect(x + OUTER_FINDER_OFFSET, y + OUTER_FINDER_OFFSET, OUTER_FINDER_SIDE_LENGTH,
+                OUTER_FINDER_SIDE_LENGTH);
         graphics.setColor(darkBlue);
-        graphics.fillOval(x + MIDDLE_DOT_OFFSET, y + MIDDLE_DOT_OFFSET, MIDDLE_DOT_DIAMETER, MIDDLE_DOT_DIAMETER);
+        graphics.fillRect(x + INNER_FINDER_OFFSET, y + INNER_FINDER_OFFSET, INNTER_FINDER_SIDE_LENGTH, INNTER_FINDER_SIDE_LENGTH);
     }
 }
