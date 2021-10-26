@@ -11,4 +11,9 @@ public class CreateCertificateException extends NestedRuntimeException {
         super(error.getErrorMessage());
         this.error = error;
     }
+
+    public CreateCertificateException(CreateCertificateError error, Throwable cause) {
+        super(error.getErrorMessage(), cause);
+        this.error = error;
+    }
 }

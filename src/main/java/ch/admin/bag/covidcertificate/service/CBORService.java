@@ -23,7 +23,7 @@ public class CBORService {
     private static final Integer ISS_CLAIM_KEY = 1;
     private static final Integer IAT_CLAIM_KEY = 6;
     private static final Integer EXP_CLAIM_KEY = 4;
-    private static final Integer HCERT_CLAIM_KEY = -250; // @TODO clarify if final key
+    private static final Integer HCERT_CLAIM_KEY = -250;
     private static final Integer HCERT_INNER_CLAIM_KEY = 1;
     private static final String ISSUER = "CH";
     // Signature Data (Sig_structure)

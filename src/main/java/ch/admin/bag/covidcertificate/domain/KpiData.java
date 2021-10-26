@@ -1,5 +1,6 @@
 package ch.admin.bag.covidcertificate.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @Table(name = "kpi")
+@EqualsAndHashCode(exclude = {"id"})
 public class KpiData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
