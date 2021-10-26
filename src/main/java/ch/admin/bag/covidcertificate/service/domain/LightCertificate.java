@@ -15,7 +15,7 @@ public class LightCertificate {
     @JsonProperty("ver")
     private String version;
     @JsonProperty("nam")
-    private CovidCertificatePersonName name;
+    private LightCertificatePersonName name;
     @JsonProperty("dob")
     private String dateOfBirth;
     @JsonIgnore
