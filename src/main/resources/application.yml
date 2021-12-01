@@ -124,5 +124,5 @@ light-certificate-generation-service:
         prometheus:
             secure: false
     certificate:
-      validity-in-hours: 48
+      validity-in-hours: 24
 
