@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 
-import static ch.admin.bag.covidcertificate.api.Constants.*;
+import static ch.admin.bag.covidcertificate.api.Constants.CREATE_COSE_PAYLOAD_FAILED;
+import static ch.admin.bag.covidcertificate.api.Constants.CREATE_COSE_PROTECTED_HEADER_FAILED;
+import static ch.admin.bag.covidcertificate.api.Constants.CREATE_COSE_SIGN1_FAILED;
+import static ch.admin.bag.covidcertificate.api.Constants.CREATE_COSE_SIGNATURE_DATA_FAILED;
+import static ch.admin.bag.covidcertificate.api.Constants.CREATE_SIGNATURE_FAILED;
 
 @Service
 @Slf4j
