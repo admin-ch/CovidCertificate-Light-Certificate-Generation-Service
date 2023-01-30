@@ -1,13 +1,12 @@
 package ch.admin.bag.covidcertificate.lightcert;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-
+import ch.admin.bag.covidcertificate.service.encoder.LightCertificateBarcodeCreator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import ch.admin.bag.covidcertificate.service.encoder.LightCertificateBarcodeCreator;
 import se.digg.dgc.encoding.BarcodeException;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Disabled("creates local file with barcode")
 public class TestLightCert {

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ch.admin.bag.covidcertificate</groupId>
 	<artifactId>cc-light-certificate-generation-service</artifactId>
-	<version>4.9.3</version>
+	<version>4.10.0</version>
 	<name>cc-light-certificate-generation-service</name>
 	<description>Service for generating a light covid certificate</description>
 

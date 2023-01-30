@@ -7,7 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-import static ch.admin.bag.covidcertificate.api.Constants.KPI.*;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_CREATE_CERTIFICATE_SYSTEM_KEY;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_GENERATION_STATUS_KEY;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_TIMESTAMP_KEY;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_TRANSFORMATION_SERVICE;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_TYPE_KEY;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.LOG_TIMESTAMP_FORMAT;
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
 @Service

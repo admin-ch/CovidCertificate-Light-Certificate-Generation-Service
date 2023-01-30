@@ -4,7 +4,6 @@ import ch.admin.bag.covidcertificate.service.encoder.CertificateLightBarcodeEnco
 import ch.admin.bag.covidcertificate.service.encoder.LightCertificateBarcodeCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import se.digg.dgc.encoding.impl.DefaultBarcodeCreator;
 import se.digg.dgc.service.DGCBarcodeEncoder;
 import se.digg.dgc.signatures.DGCSigner;
 

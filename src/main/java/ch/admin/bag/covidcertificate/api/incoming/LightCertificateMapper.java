@@ -1,6 +1,5 @@
 package ch.admin.bag.covidcertificate.api.incoming;
 
-import ch.admin.bag.covidcertificate.service.domain.LightCertificatePersonName;
 import ch.admin.bag.covidcertificate.service.domain.LightCertificate;
 import com.google.common.collect.Comparators;
 import org.springframework.beans.factory.annotation.Value;

@@ -2,7 +2,12 @@ package ch.admin.bag.covidcertificate.api.incoming;
 
 import ch.admin.bag.covidcertificate.api.validation.ValidExpirationTimestamp;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

@@ -27,7 +27,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.stream.Stream;
 
 import static ch.admin.bag.covidcertificate.FixtureCustomization.customizeLightCertificateCreateDto;
-import static ch.admin.bag.covidcertificate.api.Constants.KPI.*;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_GENERATION_STATUS_REQUESTED;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_GENERATION_STATUS_SUCCESSFUL;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_TYPE_LIGHT_CERTIFICATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
