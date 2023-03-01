@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-import static ch.admin.bag.covidcertificate.api.Constants.KPI.*;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_GENERATION_STATUS_REQUESTED;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_GENERATION_STATUS_SUCCESSFUL;
+import static ch.admin.bag.covidcertificate.api.Constants.KPI.KPI_TYPE_LIGHT_CERTIFICATE;
 
 
 @RestController
@@ -29,7 +31,7 @@ public class LightCertificateController {
     private final KpiLoggerService kpiLoggerService;
 
     @PostMapping("/generate")
-    @PreAuthorize("hasRole('bag-cc-certificatecreator')")
+    @PreAuthorize("hasRole('bag-cc-light-cert-creator')")
     public ResponseEntity<LightCertificateResponseDto> generate(@Valid @RequestBody LightCertificateCreateDto lightCertificateCreateDto) {
         kpiLoggerService.logKpi(KPI_TYPE_LIGHT_CERTIFICATE, KPI_GENERATION_STATUS_REQUESTED);
         var lightCertificate = generationService.createLightCertificate(lightCertificateCreateDto);
